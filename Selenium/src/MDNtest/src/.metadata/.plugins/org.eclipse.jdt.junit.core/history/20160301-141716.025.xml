@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MDNTest" project="CraigandDavid" tests="15" started="15" failures="0" errors="0" ignored="0">
+  <testsuite name="MDNTest" time="158.351">
+    <testcase name="testLanguageJapanese" classname="MDNTest" time="15.171"/>
+    <testcase name="testRightUsernameRightPassword" classname="MDNTest" time="15.187"/>
+    <testcase name="testSearchGibberish" classname="MDNTest" time="9.293"/>
+    <testcase name="testSearchSpecificGeorgian" classname="MDNTest" time="9.834"/>
+    <testcase name="testLanguageChinese" classname="MDNTest" time="10.233"/>
+    <testcase name="testWrongUsernameWrongPassword" classname="MDNTest" time="11.502"/>
+    <testcase name="testSearchChinese" classname="MDNTest" time="8.517"/>
+    <testcase name="testLanguageItaliano" classname="MDNTest" time="9.447"/>
+    <testcase name="testLanguageDeutsch" classname="MDNTest" time="8.398"/>
+    <testcase name="testWrongUsernameRightPassword" classname="MDNTest" time="10.549"/>
+    <testcase name="testSearchGeneralLLL" classname="MDNTest" time="9.149"/>
+    <testcase name="testLanguageSuomi" classname="MDNTest" time="9.258"/>
+    <testcase name="testSearchSpecificUSSLaboon" classname="MDNTest" time="9.221"/>
+    <testcase name="testRightUsernameWrongPassword" classname="MDNTest" time="13.78"/>
+    <testcase name="testLanguageSimpleEnglish" classname="MDNTest" time="8.812"/>
+  </testsuite>
+</testrun>

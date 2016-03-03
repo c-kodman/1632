@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MDNTest" project="CraigandDavid" tests="20" started="20" failures="0" errors="0" ignored="0">
+  <testsuite name="MDNTest" time="194.759">
+    <testcase name="testLanguageJapanese" classname="MDNTest" time="10.936"/>
+    <testcase name="testRightUsernameRightPassword" classname="MDNTest" time="12.25"/>
+    <testcase name="testSearchGibberish" classname="MDNTest" time="8.959"/>
+    <testcase name="testSearchSpecificGeorgian" classname="MDNTest" time="8.789"/>
+    <testcase name="testLanguageChinese" classname="MDNTest" time="9.613"/>
+    <testcase name="testWrongUsernameWrongPassword" classname="MDNTest" time="11.782"/>
+    <testcase name="testSearchChinese" classname="MDNTest" time="8.157"/>
+    <testcase name="testLanguageItaliano" classname="MDNTest" time="8.453"/>
+    <testcase name="testCategoryScienceToSociety" classname="MDNTest" time="10.213"/>
+    <testcase name="testLanguageDeutsch" classname="MDNTest" time="8.978"/>
+    <testcase name="testAllPortals" classname="MDNTest" time="10.499"/>
+    <testcase name="testWrongUsernameRightPassword" classname="MDNTest" time="10.728"/>
+    <testcase name="testCategorySociety" classname="MDNTest" time="9.606"/>
+    <testcase name="testSearchGeneralLLL" classname="MDNTest" time="8.366"/>
+    <testcase name="testCategoryArts" classname="MDNTest" time="9.107"/>
+    <testcase name="testLanguageSuomi" classname="MDNTest" time="7.934"/>
+    <testcase name="testSearchSpecificUSSLaboon" classname="MDNTest" time="9.316"/>
+    <testcase name="testRightUsernameWrongPassword" classname="MDNTest" time="14.207"/>
+    <testcase name="testCategoryMathematics" classname="MDNTest" time="8.066"/>
+    <testcase name="testLanguageSimpleEnglish" classname="MDNTest" time="8.798"/>
+  </testsuite>
+</testrun>

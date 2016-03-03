@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MDNTest" project="CraigandDavid" tests="19" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="MDNTest" incomplete="true">
+    <testcase name="testLanguageJapanese" classname="MDNTest" time="9.938"/>
+    <testcase name="testRightUsernameRightPassword" classname="MDNTest" incomplete="true"/>
+    <testcase name="testSearchGibberish" classname="MDNTest" incomplete="true"/>
+    <testcase name="testSearchSpecificGeorgian" classname="MDNTest" incomplete="true"/>
+    <testcase name="testLanguageChinese" classname="MDNTest" incomplete="true"/>
+    <testcase name="testWrongUsernameWrongPassword" classname="MDNTest" incomplete="true"/>
+    <testcase name="testSearchChinese" classname="MDNTest" incomplete="true"/>
+    <testcase name="testLanguageItaliano" classname="MDNTest" incomplete="true"/>
+    <testcase name="testCategoryScienceToSociety" classname="MDNTest" incomplete="true"/>
+    <testcase name="testLanguageDeutsch" classname="MDNTest" incomplete="true"/>
+    <testcase name="testWrongUsernameRightPassword" classname="MDNTest" incomplete="true"/>
+    <testcase name="testCategorySociety" classname="MDNTest" incomplete="true"/>
+    <testcase name="testSearchGeneralLLL" classname="MDNTest" incomplete="true"/>
+    <testcase name="testCategoryArts" classname="MDNTest" incomplete="true"/>
+    <testcase name="testLanguageSuomi" classname="MDNTest" incomplete="true"/>
+    <testcase name="testSearchSpecificUSSLaboon" classname="MDNTest" incomplete="true"/>
+    <testcase name="testRightUsernameWrongPassword" classname="MDNTest" incomplete="true"/>
+    <testcase name="testCategoryMathematics" classname="MDNTest" incomplete="true"/>
+    <testcase name="testLanguageSimpleEnglish" classname="MDNTest" incomplete="true"/>
+  </testsuite>
+</testrun>

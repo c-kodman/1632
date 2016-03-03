@@ -1,0 +1,319 @@
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class MDNTest {
+	private WebDriver driver;
+	private String baseUrl;
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
+
+	@Before
+	public void setUp() throws Exception {
+		driver = new FirefoxDriver();
+		baseUrl = "https://en.wikipedia.org/";
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	}
+	//--------------------USER STORY 1-----------------------------------------
+	/*
+	 * As a user I want to
+	 * Log in, so that I can
+	 * View my account information
+	 */
+	//------------------Scenario 1-1-------------------------------------------
+	/*
+	 * Given a wrong user name
+	 * and a wrong password
+	 * When I try to log in with those credentials
+	 * Then I should receive an error message with "Login error"
+	 */
+	@Test
+	public void testWrongUsernameWrongPassword() throws Exception {
+		driver.get(baseUrl + "/wiki/Wikipedia");
+		driver.findElement(By.linkText("Log in")).click();
+		driver.findElement(By.id("wpName1")).clear();
+		driver.findElement(By.id("wpName1")).sendKeys("asdfsdf");
+		driver.findElement(By.id("wpPassword1")).clear();
+		driver.findElement(By.id("wpPassword1")).sendKeys("billlaboon");
+		driver.findElement(By.id("wpLoginAttempt")).click();
+		assertEquals("Login error\nIncorrect password entered. Please try again.", driver.findElement(By.cssSelector("div.errorbox")).getText());
+
+	}
+	//------------------Scenario 1-2-------------------------------------------
+	/*
+	 * Given a wrong user name
+	 * and a right password
+	 * When I try to log in with those credentials
+	 * Then I should receive an error message with "Login error"
+	 */
+	@Test
+	public void testWrongUsernameRightPassword() throws Exception {
+		driver.get(baseUrl + "/wiki/Wikipedia");
+		driver.findElement(By.linkText("Log in")).click();
+		driver.findElement(By.id("wpName1")).clear();
+		driver.findElement(By.id("wpName1")).sendKeys("asdfsdf");
+		driver.findElement(By.id("wpPassword1")).clear();
+		driver.findElement(By.id("wpPassword1")).sendKeys("billlaboon");
+		driver.findElement(By.id("wpLoginAttempt")).click();
+		assertEquals("Login error\nIncorrect password entered. Please try again.", driver.findElement(By.cssSelector("div.errorbox")).getText());
+
+	}
+	//------------------Scenario 1-3-------------------------------------------
+	/*
+	 * Given a right user name
+	 * and a wrong password
+	 * When I try to log in with those credentials
+	 * Then I should receive an error message with "Login error"
+	 */
+	@Test
+	public void testRightUsernameWrongPassword() throws Exception {
+		driver.get(baseUrl + "/wiki/Wikipedia");
+		driver.findElement(By.linkText("Log in")).click();
+		driver.findElement(By.id("wpName1")).clear();
+		driver.findElement(By.id("wpName1")).sendKeys("magiccraiganddavid");
+		driver.findElement(By.id("wpPassword1")).clear();
+		driver.findElement(By.id("wpPassword1")).sendKeys("asdfsadf");
+		driver.findElement(By.id("wpLoginAttempt")).click();
+		assertEquals("Login error\nIncorrect password entered. Please try again.", driver.findElement(By.cssSelector("div.errorbox")).getText());
+
+	}
+	//------------------Scenario 1-4-------------------------------------------
+	/*
+	 * Given a right user name
+	 * and a right password
+	 * When I try to log in with those credentials
+	 * Then I should be returned to the main page successfully
+	 */
+	@Test
+	public void testRightUsernameRightPassword() throws Exception {
+		driver.get(baseUrl + "/wiki/Wikipedia");
+		driver.findElement(By.linkText("Log in")).click();
+		driver.findElement(By.id("wpName1")).clear();
+		driver.findElement(By.id("wpName1")).sendKeys("magiccraiganddavid");
+		driver.findElement(By.id("wpPassword1")).clear();
+		driver.findElement(By.id("wpPassword1")).sendKeys("billlaboon");
+		driver.findElement(By.id("wpLoginAttempt")).click();
+		assertEquals("Wikipedia, the free encyclopedia",driver.getTitle());
+
+	}
+	//--------------------USER STORY 2-----------------------------------------
+	/*
+	 * As a user I want to
+	 * Search wikipedia so that I can
+	 * Find the relevant page of information for my research
+	 */
+
+	//------------------Scenario 2-1-------------------------------------------
+	/*
+	 * Given a random set of search input "asdfasdfasdfasdfa"
+	 * When I try to search the input
+	 * Then I should see the result with message "There were no results matching the query."
+	 */
+	@Test
+	public void testSearchGibberish() throws Exception {
+		driver.get(baseUrl + "/w/index.php?title=Special:UserLogout&returnto=Special%3ASearch&returntoquery=search%3Dsaldjkflasjf%26go%3DGo");
+		driver.findElement(By.id("searchInput")).click();
+		driver.findElement(By.id("searchInput")).clear();
+		driver.findElement(By.id("searchInput")).sendKeys("asdfasdfasdfasdfa");
+		driver.findElement(By.id("searchButton")).click();
+		assertEquals("There were no results matching the query.", driver.findElement(By.cssSelector("p.mw-search-nonefound")).getText());
+	}
+	//------------------Scenario 2-2-------------------------------------------
+	/*
+	 * Given a general search input "LLL"
+	 * When I try to search the input
+	 * Then I should see a list of possible relavant pages to the general search
+	 */
+	@Test
+	public void testSearchGeneralLLL() throws Exception {
+		driver.get(baseUrl + "/w/index.php?title=Special:UserLogout&returnto=Special%3ASearch&returntoquery=search%3Dsaldjkflasjf%26go%3DGo");
+		driver.findElement(By.id("searchInput")).click();
+		driver.findElement(By.id("searchInput")).clear();
+		driver.findElement(By.id("searchInput")).sendKeys("lll");
+		driver.findElement(By.id("searchButton")).click();
+		assertEquals("LLL may stand for:", driver.findElement(By.cssSelector("p")).getText());
+	}
+	//------------------Scenario 2-3-------------------------------------------
+	/*
+	 * Given a random set of search input in Chinese
+	 * When I try to search the input
+	 * Then I should see the a return list of relevant links to pages
+	 */
+	@Test
+	public void testSearchChinese() throws Exception {
+		driver.get(baseUrl + "/w/index.php?title=Special:UserLogout&returnto=Special%3ASearch&returntoquery=search%3Dsaldjkflasjf%26go%3DGo");
+		driver.findElement(By.id("searchInput")).click();
+		driver.findElement(By.id("searchInput")).clear();
+		driver.findElement(By.id("searchInput")).sendKeys("笑傲江湖");
+		driver.findElement(By.id("searchButton")).click();
+		assertEquals("笑傲江湖 - Search results - Wikipedia, the free encyclopedia", driver.getTitle());
+	}
+	//------------------Scenario 2-4-------------------------------------------
+	/*
+	 * Given a specific search in Georgian language
+	 * When I try to search the input
+	 * Then I should see the return of the page Georgian language
+	 */
+	@Test
+	public void testSearchSpecificGeorgian() throws Exception {
+		driver.get(baseUrl + "/w/index.php?title=Special:UserLogout&returnto=Special%3ASearch&returntoquery=search%3Dsaldjkflasjf%26go%3DGo");
+		driver.findElement(By.id("searchInput")).click();
+		driver.findElement(By.id("searchInput")).clear();
+		driver.findElement(By.id("searchInput")).sendKeys("ქართული");
+		driver.findElement(By.id("searchButton")).click();
+		assertEquals("Georgian language - Wikipedia, the free encyclopedia",driver.getTitle());
+
+	}
+	//------------------Scenario 2-5-------------------------------------------
+	/*
+	 * Given a specific search of a ship's name, USS Laboon
+	 * When I try to search the input
+	 * Then I should see the return of the page USS Laboon
+	 */
+	@Test
+	public void testSearchSpecificUSSLaboon() throws Exception {
+		driver.get(baseUrl + "/w/index.php?title=Special:UserLogout&returnto=Special%3ASearch&returntoquery=search%3Dsaldjkflasjf%26go%3DGo");
+		driver.findElement(By.id("searchInput")).click();
+		driver.findElement(By.id("searchInput")).clear();
+		driver.findElement(By.id("searchInput")).sendKeys("uss laboon");
+		driver.findElement(By.id("searchButton")).click();
+		assertEquals("USS Laboon (DDG-58)", driver.findElement(By.id("firstHeading")).getText());
+	}
+	//--------------------USER STORY 3-----------------------------------------
+	/*
+	 * As a user I want to
+	 * Change the wikipidea article's language so that I can
+	 * View the article in different languages
+	 */
+	//------------------Scenario 3-1-------------------------------------------
+	/*
+	 * Given an article
+	 * When I try to change the article's language to simple English
+	 * Then I should see the return of the page with simple English language
+	 */
+	@Test
+	public void testLanguageSimpleEnglish() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Simple English")).click();
+		assertEquals("Welcome to Wikipedia\nthe free encyclopedia that anyone can change\n  Search the 117,675 articles in the Simple English Wikipedia\nHow to write Simple English pages · Useful pages · Simple talk · Categories · Help\nSchools Gateway (for users who want to make changes from a school)", driver.findElement(By.cssSelector("td")).getText());
+
+	}
+	//------------------Scenario 3-2-------------------------------------------
+	/*
+	 * Given an article
+	 * When I try to change the article's language to Deutsch
+	 * Then I should see the return of the page with Deutsch language
+	 */
+	@Test
+	public void testLanguageDeutsch() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Deutsch")).click();
+		assertEquals("Wikipedia – Die freie Enzyklopädie",driver.getTitle());
+
+	}
+	//------------------Scenario 3-3-------------------------------------------
+	/*
+	 * Given an article
+	 * When I try to change the article's language to Japanese
+	 * Then I should see the return of the page with Japanese language
+	 */
+	@Test
+	public void testLanguageJapanese() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("日本語")).click();
+		assertEquals("選り抜き記事", driver.findElement(By.cssSelector("h2")).getText());
+	}
+	//------------------Scenario 3-4-------------------------------------------
+	/*
+	 * Given an article
+	 * When I try to change the article's language to Chinese
+	 * Then I should see the return of the page with Chiense language
+	 */
+	@Test
+	public void testLanguageChinese() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("中文")).click();
+		assertEquals("维基百科，自由的百科全书",driver.getTitle());
+	}
+	//------------------Scenario 3-5-------------------------------------------
+	/*
+	 * Given an article
+	 * When I try to change the article's language to Suomi
+	 * Then I should see the return of the page with Suomi language
+	 */
+	@Test
+	public void testLanguageSuomi() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Suomi")).click();
+		assertEquals("Wikipedia, vapaa tietosanakirja",driver.getTitle());
+	}
+	//------------------Scenario 3-6-------------------------------------------
+	/*
+	 * Given an article
+	 * When I try to change the article's language to Italian
+	 * Then I should see the return of the page with Italian language
+	 */
+	@Test
+	public void testLanguageItaliano() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Italiano")).click();
+		assertEquals("Wikipedia, l'enciclopedia libera",driver.getTitle());
+	}	
+
+	@Test
+	public void testReddit() throws Exception {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Mathematics")).click();
+		assertEquals("Portal:Mathematics - Wikipedia, the free encyclopedia", driver.getTitle());
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		driver.quit();
+		String verificationErrorString = verificationErrors.toString();
+		if (!"".equals(verificationErrorString)) {
+			fail(verificationErrorString);
+		}
+	}
+
+
+	private boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	private boolean isAlertPresent() {
+		try {
+			driver.switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException e) {
+			return false;
+		}
+	}
+
+	private String closeAlertAndGetItsText() {
+		try {
+			Alert alert = driver.switchTo().alert();
+			String alertText = alert.getText();
+			if (acceptNextAlert) {
+				alert.accept();
+			} else {
+				alert.dismiss();
+			}
+			return alertText;
+		} finally {
+			acceptNextAlert = true;
+		}
+	}
+}
+
