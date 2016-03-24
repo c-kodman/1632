@@ -6,15 +6,13 @@
 
         import org.junit.Before;
         import org.junit.Test;
-//import org.junit.Test;
+
 public class test {
     private int[] arr;
 
-    //public static void main(String[] args) {
     @Before
     public void setup() {
         Random rand = new Random();
-        //ArrayList<int[]> al = new ArrayList<int[]>();
         int i;
         int j;
         int r;
@@ -25,13 +23,9 @@ public class test {
                 arr[j] = rand.nextInt(200) - 100;
 
             }
-            //  System.out.println(Arrays.toString(arr));
-//            testPure(arr);
-            //  Arrays.sort(arr);
-            //System.out.println(Arrays.toString(arr));
         }
     }
-    //}
+
     @Test
     public void testPure()
     {
