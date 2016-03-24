@@ -41,7 +41,6 @@ public class test {
         int unsortedArray = arr.length;
         System.out.println(Arrays.toString(arr));
         Arrays.sort(arr);
-        System.out.println(Arrays.toString(arr));
         int sortedArray = arr.length;
         assertEquals(unsortedArray, sortedArray);
     }
